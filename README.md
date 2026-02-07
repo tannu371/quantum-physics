@@ -28,6 +28,36 @@ Simulating Hilbert Spaces, Operators, and Representations in Python.
 
 ---
 
+## 📚 Project 3: Quantum Dynamics Lab
+
+Visualizing State Evolution, Heisenberg Picture, and Ehrenfest Theorem.
+
+| Module | Topic | Key Concepts |
+|--------|-------|--------------|
+| **A** | Quantum Condition | $[X, P] = i\hbar$, commutator heatmaps |
+| **B** | Schrödinger Evolution | Rabi oscillations, coherent states |
+| **C** | Heisenberg & Ehrenfest | Operator evolution, classical limit |
+| **D** | Interaction Picture | H = H₀ + V splitting |
+
+**Notebook**: `quantum_dynamics_lab.ipynb`
+
+---
+
+## 📚 Project 4: Quantum Angular Momentum Lab
+
+Spin, Orbital Angular Momentum, and Coupling Visualized.
+
+| Module | Topic | Key Concepts |
+|--------|-------|--------------|
+| **A** | Orbital Angular Momentum | $L_x, L_y, L_z$ matrices, commutators |
+| **B** | Spin-1/2 | Pauli matrices, Bloch sphere precession |
+| **C** | Addition of Angular Momenta | Clebsch-Gordan coefficients |
+| **D** | Spin-Orbit Coupling | Fine structure, level splitting animation |
+
+**Notebook**: `quantum_angular_momentum_lab.ipynb`
+
+---
+
 ## 🚀 Getting Started
 
 ### Requirements
