@@ -1,0 +1,55 @@
+name: Docker Build
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-backend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Build Backend Docker Image
+        run: |
+          cd quantum-backend
+          docker build -t quantum-backend:test .
+      
+      - name: Test Backend Container
+        run: |
+          docker run -d -p 8000:8000 --name backend-test quantum-backend:test
+          sleep 10
+          curl -f http://localhost:8000/ || exit 1
+          docker stop backend-test
+
+  build-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Build Frontend Docker Image
+        run: |
+          cd quantum-frontend
+          docker build -t quantum-frontend:test .
+      
+      - name: Test Frontend Container
+        run: |
+          docker run -d -p 3000:80 --name frontend-test quantum-frontend:test
+          sleep 5
+          curl -f http://localhost:3000/ || exit 1
+          docker stop frontend-test
+
+  docker-compose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Test Docker Compose
+        run: |
+          docker-compose up -d
+          sleep 30
+          curl -f http://localhost:8000/ || exit 1
+          curl -f http://localhost:3000/ || exit 1
+          docker-compose down

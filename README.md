@@ -1,85 +1,122 @@
-# Quantum Physics Projects
+# Quantum Mechanics Playground
 
-A comprehensive computational exploration of quantum mechanics using Python, NumPy, SciPy, and Matplotlib.
+Interactive web application for exploring quantum mechanics concepts with React + FastAPI.
 
-## 📚 Project 1: Schrödinger Equation Solver
+## Project Structure
 
-| Notebook | Topic | Key Concepts |
-|----------|-------|--------------|
-| `01_setup_and_grid.ipynb` | Setup & Grid | Finite-difference method, kinetic energy matrix |
-| `02_harmonic_oscillator.ipynb` | Harmonic Oscillator | Stationary states, energy quantization |
-| `03_finite_well.ipynb` | Finite Square Well | Bound states, quantum tunneling |
-| `04_time_evolution.ipynb` | Time Evolution | Wave packets, Ehrenfest theorem, animation |
-| `05_hydrogen_radial.ipynb` | Hydrogen Atom | Radial wavefunctions, atomic orbitals |
+```
+backend/     # FastAPI backend
+  app/
+    routers/        # API endpoints for each lab
+    main.py         # FastAPI app with CORS
+  requirements.txt
 
----
-
-## 📚 Project 2: Visual Quantum States
-
-Simulating Hilbert Spaces, Operators, and Representations in Python.
-
-| Notebook | Topic | Key Concepts |
-|----------|-------|--------------|
-| `A_hilbert_space_operators.ipynb` | Hilbert Space & Operators | States, Pauli matrices, visualization |
-| `B_eigenvalues_measurement.ipynb` | Measurement | Eigenvalues, Born rule, probability animation |
-| `C_basis_changes.ipynb` | Basis Transformations | Unitary matrices, basis rotation animation |
-| `D_harmonic_oscillator.ipynb` | Operator Algebra | Ladder operators, commutators, heatmaps |
-| `E_time_evolution.ipynb` | Time Evolution | Schrödinger/Heisenberg, Bloch sphere animation |
-
----
-
-## 📚 Project 3: Quantum Dynamics Lab
-
-Visualizing State Evolution, Heisenberg Picture, and Ehrenfest Theorem.
-
-| Module | Topic | Key Concepts |
-|--------|-------|--------------|
-| **A** | Quantum Condition | $[X, P] = i\hbar$, commutator heatmaps |
-| **B** | Schrödinger Evolution | Rabi oscillations, coherent states |
-| **C** | Heisenberg & Ehrenfest | Operator evolution, classical limit |
-| **D** | Interaction Picture | H = H₀ + V splitting |
-
-**Notebook**: `quantum_dynamics_lab.ipynb`
-
----
-
-## 📚 Project 4: Quantum Angular Momentum Lab
-
-Spin, Orbital Angular Momentum, and Coupling Visualized.
-
-| Module | Topic | Key Concepts |
-|--------|-------|--------------|
-| **A** | Orbital Angular Momentum | $L_x, L_y, L_z$ matrices, commutators |
-| **B** | Spin-1/2 | Pauli matrices, Bloch sphere precession |
-| **C** | Addition of Angular Momenta | Clebsch-Gordan coefficients |
-| **D** | Spin-Orbit Coupling | Fine structure, level splitting animation |
-
-**Notebook**: `quantum_angular_momentum_lab.ipynb`
-
----
-
-## 🚀 Getting Started
-
-### Requirements
-```bash
-pip install numpy scipy matplotlib
+frontend/    # React + TypeScript frontend
+  src/
+    labs/           # Lab components
+    api/            # API client
+    App.tsx         # Main app with navigation
 ```
 
-### Run Notebooks
+## Quick Start
+
+### Option 1: Docker (Recommended)
+
 ```bash
-jupyter notebook
+# Start production environment
+docker-compose up --build
+
+# Or use Make
+make prod
 ```
 
-## 🎯 Learning Objectives
+Then open:
+- Frontend: http://localhost:3000
+- Backend API: http://localhost:8000/docs
 
-1. Represent quantum states as vectors and operators as matrices
-2. Understand eigenvalue problems and quantum measurement
-3. Visualize basis changes and unitary transformations
-4. Implement ladder operators for harmonic oscillator
-5. Compare Schrödinger vs Heisenberg pictures
-6. Animate Bloch sphere dynamics
+For development with hot-reload:
+```bash
+docker-compose -f docker-compose.dev.yml up
+# Or: make dev
+```
 
-## 📝 License
+See [DOCKER.md](DOCKER.md) for detailed Docker instructions.
 
-Educational use - feel free to modify and extend!
+### Option 2: Local Development
 
+See [QUICKSTART.md](QUICKSTART.md) for detailed setup instructions.
+
+**Backend (Terminal 1):**
+```bash
+cd backend
+uv venv && source .venv/bin/activate
+uv pip install -r requirements.txt
+uvicorn app.main:app --reload --port 8000
+```
+
+**Frontend (Terminal 2):**
+```bash
+cd frontend
+npm install && npm run dev
+```
+
+Then open http://localhost:5173
+
+### Backend (Terminal 1)
+```bash
+cd backend
+uv venv && source .venv/bin/activate
+uv pip install -r requirements.txt
+uvicorn app.main:app --reload --port 8000
+```
+
+### Frontend (Terminal 2)
+```bash
+cd frontend
+npm install && npm run dev
+```
+
+Then open http://localhost:5173
+
+## Labs Overview
+
+### 1. Schrödinger Lab
+- Solve time-independent Schrödinger equation
+- Visualize energy eigenstates
+- Animate time evolution of wave packets
+- Potentials: harmonic oscillator, square well, barrier
+
+### 2. State & Operator Lab
+- Generate quantum states and operators
+- Compute eigenvalues and eigenvectors
+- Analyze measurement probabilities
+- Explore basis transformations
+
+### 3. Dynamics Lab
+- Schrödinger picture time evolution
+- Heisenberg picture operator evolution
+- Ehrenfest theorem verification
+
+### 4. Spin & Angular Momentum Lab
+- Spin dynamics in magnetic fields
+- Two-spin coupling and Clebsch-Gordan coefficients
+- Spin-orbit coupling energy levels
+
+### 5. Symmetry Lab
+- Rotation operators
+- Parity transformations
+- Time-reversal symmetry
+
+### 6. Variational & WKB Lab
+- Variational method for harmonic oscillator
+- Variational method for helium atom
+- WKB approximation for tunneling
+
+## PHO505 Course Mapping
+
+- **Unit 1-2**: Schrödinger Lab (wave functions, operators)
+- **Unit 3**: State & Operator Lab (Hilbert space, observables)
+- **Unit 4**: Dynamics Lab (time evolution, pictures)
+- **Unit 5**: Spin Lab (angular momentum, coupling)
+- **Unit 6**: Symmetry Lab (conservation laws)
+- **Unit 7**: Variational & WKB Lab (approximation methods)
